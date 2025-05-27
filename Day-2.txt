@@ -1,0 +1,12 @@
+Parallel proceeing:
+
+    8 core cpu 
+    1 cpu -> async methods 
+        fs.readFile("/file.md", (err, data) => {
+            if (err) throw err;
+            });
+        Functional Programing 
+    2 cpu ->  (err, data) => {
+            if (err) throw err;
+            return -> flow, data 
+            }

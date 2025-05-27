@@ -1,0 +1,183 @@
+
+Program -> set of instructions -> 2^64
+            1. LLL - 0-1 - exe, jar
+            2. MLL, ALL                         -> Compilers [full code compiled [syntax, sematics] and executed] or Translator [step by execution]
+            3. HLL - english like statements
+
+Process -> program in running state -> CPU -> RAM -> containerzation -> Docker instance is a process 
+
+Application -> providing a solution for a problem statement 
+    multiple processes 
+    1. calculator is application -> 
+
+Enterprise Application -> Education, Banking, Finiacial, Telecom, ....
+    set of applications:
+    1. Banking -> credit and debit on a account 
+        1. web portals 
+            1. bank employees
+            2. coustomer 
+        2. destop apps 
+        3. mobile apps 
+        4. iot apps 
+
+1. syncronization 
+2. manage the applications 
+3. Data, Communication, avaialbility, scalability 
+
+Architectures 
+    1. Microservices 
+
+API: Application Programable Interface -> Interface -> contract between implementer and consumer
+    1. DLL 
+    2. Rest API 
+
+
+                    OOP;s interface 
+                    Interface EmployeeAPIs{
+                        public list<employees> getAllEmployees();
+                        public employees getEmpById();
+                        ... crud 
+                    } 
+
+Implementer -> defnition                                                    consumer
+
+class Employee implements EmployeeAPIs{                                     class manager{
+    definitions                                                             EmployeeAPIs fullTimeEmployees = new Employee();
+}                                                                           } 
+
+
+rest api's 
+
+        Open API Specification -> Swagger -> Document -> Arcitecht 
+        method to be implemented over here 
+        {
+        }
+
+Backend Application                                                         Frontend Application 
+node, .net, java, python, c++                                               ang, reacr, vuejs, reatnative, swift, android 
+
+SOAP API 
+Rest API 
+
+
+scalability
+    100 users who are using my application concurently 
+    1000 " "
+    10000 
+
+    benchmarking of an application: 
+
+    8 core cpu, 16 gb ram, 100 gb hdd, 100 mbps n/w -> EMP -> Load testers -> 100 concurent users can use 
+
+        1. vertical scaling -> increase the resources -> 32 core cpu, 128 gb ram, 100 tb hdd, 1000 mbps n/w -> 1000
+        2. horizontal scaling -> Automatic HS -> Cloud infra 
+                    -> 32 core cpu, 128 gb ram, 100 tb hdd, 1000 mbps n/w -> 1000
+                    -> 32 core cpu, 128 gb ram, 100 tb hdd, 1000 mbps n/w -> 1000
+                    -> 32 core cpu, 128 gb ram, 100 tb hdd, 1000 mbps n/w -> 1000
+                    -> 32 core cpu, 128 gb ram, 100 tb hdd, 1000 mbps n/w -> 1000
+                    ... 10
+
+
+client         AWS, Azure     server     lb       service
+browser        LB             EMP - 1           Department - 1
+                              EMP - 2           Department - 2
+
+                              1. cloud lb 
+                              2. f5 
+                              3. orcastration k8s for lb 
+
+server / client                 Server                          server 
+emp-1 [mongoclient-> lb]  CRUD   mongodb-instance-1             weather service- rest api - 1
+                                 mongodb-instance-2
+                                 mongodb-instance-3
+      [Httpclient ] 
+
+
+Web solutions?  Tomcat
+
+    c [browser]/s [web servers (Apache Tomcat, IIS, GlassFish, ....)] -> http 
+    c [another program]/ s [web server]
+    1. web sites [static web pages (html, css, js, png, application/filetype)] - Apache static file server
+        (get) the web pages from server -> 
+    2. web applications [ASP.Net MVC, Servlets, PHP ]  Apache Tomcat means application server
+        dynamic web pages, we can store data in server too (get, post) -> html
+    3. web services.
+        1. Soap service 
+            work with only xml data rather than html 
+                [operations + Data]
+                post metod 
+        2. rest service 
+            transfering only the data over http as Json or XML 
+            Http R get C post U put D delete -> data 
+
+HTTP -> 
+    1. it is a application layer protocol [ISO OSI Layers]
+    2. stateless protocol -> 
+    3. uses tcp protocol in transport layer 
+
+TCP -> 
+    1. connection oriented 
+    2. statefull  
+
+
+OSI 
+
+cleint                                          |        server 
+                                                |
+App -> http [apache server /emsapp], smtp, ftp  |    index.html -> .png, .css, .js etc 
+    index.html                                  | 
+    .png                                        | 
+    .css                                        | 
+    .js                                         | 
+P                                               |
+S                                               |
+Transport -> tcp[80,8080,], udp                 |      connection tcp 
+Network -> ip, icmp, arp                        |
+Datalink -> [0-1 packets]                       |
+Physical                                        | 
+   0-1  NIC -> wifi, lan, fo                    |    
+   
+
+scheme://ip:port/pathtoresource/resource/pathvariable?queryparams 
+http://localhost:80/emsapp/employee/1?search=address:home
+
+http://localhost:80/index.html 
+
+AWS -> 
+    1. clasic 
+    2. network 
+    3. application 
+
+
+when will you call a system as client or a server? 
+    1. client -> when i am running a client program in a system -> Browser -> makes a request 
+    2. server -> when i am running a server program in a system -> apache tomcat -> listening 
+
+Browser -> Engines -> 
+    1. make a request 
+    2. process the html content -> Html engine -> html tags -> Document Object Model 
+    3. style your UI -> css engine -> sytle the elements -> DOM 
+    4. provide dynamic ness for the UI -> w3c -> JS Engine -> it interacts with DOM and provide interactivity 
+
+JS -> Scripting languange -> 
+serverside scripting language -> node js -> JS Engine of chrome v8 engine -> running js programs -> interpreters 
+
+ECMA 5 -> Arrow function -> IIFE -> lazy loading  -> ECMA Modules -> common js modules -> 
+ECMA - js 6 -> classes function interfaces
+    SL 
+    SSSL 
+    Functional PL 
+    OOPL
+
+Node js 
+    1. Node engine - js will get executed 
+    2. npm package manager 
+
+power shell with admin privilages: 
+    1. Get-ExecutionPolicy
+    2. Set-ExecutionPolicy Unrestricted
+
+node -v 
+npm -v
+
+git clone https://github.com/vijaynvb/siemens_nodejs
