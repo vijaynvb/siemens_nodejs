@@ -10,3 +10,25 @@ Parallel proceeing:
             if (err) throw err;
             return -> flow, data 
             }
+
+
+Browser: 
+    1. window alert()
+    2. document getelementbyid() 
+
+node: 
+    global 
+    process 
+
+Async Progrmaing -> return of data 
+
+    1. using callback methods 
+    2. async await keywords -> markers 
+        tend to use promises 
+
+        main thread                             sub thread 
+            1.                                  1.
+            2. promise()=>{}                    2. -> success, failure 
+                .then()
+                .catch()
+            3.
