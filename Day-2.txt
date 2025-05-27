@@ -50,3 +50,42 @@ String value construction
 
 
 Task 1: Read content of a file and where ever we find the string value 'it' replace it with XX.
+
+
+EMS : 
+Departments
+    
+R getallemployees  get      http://ip:port/api/v1/ems/employees                     200 ok
+                 request    headers Accept: application/json/xml 
+                 responding headers Content-type: application/json
+  pagination       get      http://ip:port/api/v1/ems/employees?page=2&limit=10
+  search           get      http://ip:port/api/v1/ems/employees?search=name:vijay   204
+  getempbyid       get      http://ip:port/api/v2/ems/employees/[1]                 404
+                                {
+                                    name: vijay,
+                                    age: 12,
+                                    email:v@g.com 
+                                    links:[
+                                        {
+                                            operation:get,
+                                            type: self,
+                                            url: http://ip:port/api/v2/ems/employees/[1]
+                                        }, 
+                                        {
+                                            operation:delete,
+                                            type: self,
+                                            url: http://ip:port/api/v1/ems/employees/[1]
+                                        },
+                                        {
+                                            operation:update,
+                                            type: self,
+                                            url: http://ip:port/api/v1/ems/employees/[1]
+                                        }
+
+                                    ]
+                                }
+  getempdept       get      http://ip:port/api/v1/ems/employees/[1]/department
+C                  post     http://ip:port/api/v1/ems/employees + data json body    201 created
+U                  put      http://ip:port/api/v1/ems/employees/[1]  + data json body 203 Accepted
+D                  delete   http://ip:port/api/v1/ems/employees/[1]                   203 Accepted
+
