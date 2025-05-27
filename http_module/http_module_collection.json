@@ -1,0 +1,30 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "http module collection",
+    "collectionId": "3318e156-ba67-419a-9101-0ecf37fd18cc",
+    "dateExported": "2025-05-27T11:38:02.036Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "eb9768c1-ef42-44a1-8f70-4ff0609202d5",
+            "colId": "3318e156-ba67-419a-9101-0ecf37fd18cc",
+            "containerId": "",
+            "name": "Get example",
+            "url": "http://localhost:3000/about?name=jai",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-05-27T11:37:45.107Z",
+            "modified": "2025-05-27T11:37:45.107Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "jai",
+                    "isPath": false
+                }
+            ]
+        }
+    ],
+    "ref": "G-haWBmFi2_-0obtmjesRJGbQfWaC5VUOwqCwcGQETnq4GKWGimb00YjX6PsjO5Q2XXyB7iSdPJZdZOd1ItEmw"
+}
