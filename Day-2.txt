@@ -46,4 +46,7 @@ String value construction
     1. concatinate string +
     2. template
      const name = 'vijay'
-     const str = `My Name is ${ name }`
+     const str = `My Name is ${ name }` 
+
+
+Task 1: Read content of a file and where ever we find the string value 'it' replace it with XX.
