@@ -32,3 +32,18 @@ Async Progrmaing -> return of data
                 .then()
                 .catch()
             3.
+
+Modules: 
+    1. Common JS 
+    2. ES 6 -> porject management 
+
+        1. local
+        2. built in 
+            1. os, fs, http, events
+        3. third party 
+
+String value construction 
+    1. concatinate string +
+    2. template
+     const name = 'vijay'
+     const str = `My Name is ${ name }`
