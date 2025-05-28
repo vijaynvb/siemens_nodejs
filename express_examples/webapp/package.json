@@ -1,11 +1,13 @@
 {
   "name": "webapp",
-  "version": "1.0.0", 
+  "version": "1.0.0",
   "description": "Simple web app",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
+    "start:prod": "NODE_ENV=prod node index.js",
+    "start:dev": "NODE_ENV=dev node index.js",
     "dev": "npm run nodemon",
     "fakeserver": "echo \"This is a fake script\"",
     "build": "echo \"Building the web app...\"",
@@ -18,6 +20,7 @@
   "author": "vijay",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "16.5.0",
     "express": "5.1.0"
   }
 }

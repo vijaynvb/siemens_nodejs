@@ -1,0 +1,96 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "EmployeeCollection",
+    "collectionId": "480d4471-d2d5-4b60-bddc-9fb0e84f1143",
+    "dateExported": "2025-05-28T07:38:24.040Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "55268303-c3d3-472c-a046-86dcf7dca215",
+            "colId": "480d4471-d2d5-4b60-bddc-9fb0e84f1143",
+            "containerId": "",
+            "name": "Get All Employees",
+            "url": "http://localhost:3000/api/v1/ems/employees",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-05-28T07:37:07.875Z",
+            "modified": "2025-05-28T07:37:07.875Z",
+            "headers": []
+        },
+        {
+            "_id": "09a57bcb-f50b-49ae-81a5-92469c7c0a86",
+            "colId": "480d4471-d2d5-4b60-bddc-9fb0e84f1143",
+            "containerId": "",
+            "name": "Get Employee By id",
+            "url": "http://localhost:3000/api/v1/ems/employees/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-05-28T07:37:16.273Z",
+            "modified": "2025-05-28T07:37:16.273Z",
+            "headers": []
+        },
+        {
+            "_id": "ab194fd5-a7ec-4d90-88e7-80394c9dc920",
+            "colId": "480d4471-d2d5-4b60-bddc-9fb0e84f1143",
+            "containerId": "",
+            "name": "Create An Employee",
+            "url": "http://localhost:3000/api/v1/ems/employees",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2025-05-28T07:37:23.233Z",
+            "modified": "2025-05-28T07:37:23.233Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 10,\n  \"first_name\": \"vijay\",\n  \"last_name\": \"Reddy\",\n  \"email\": \"v@g.com\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "4c8c0afe-15e4-4e0e-84cd-13f8d6693bad",
+            "colId": "480d4471-d2d5-4b60-bddc-9fb0e84f1143",
+            "containerId": "",
+            "name": "Update Employee",
+            "url": "http://localhost:3000/api/v1/ems/employees/1",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2025-05-28T07:37:29.953Z",
+            "modified": "2025-05-28T07:37:29.953Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 1,\n  \"first_name\": \"vijay\",\n  \"last_name\": \"Reddy\",\n  \"email\": \"v@g.com\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ce3ad3f3-cfcb-4619-a143-06e576eda43f",
+            "colId": "480d4471-d2d5-4b60-bddc-9fb0e84f1143",
+            "containerId": "",
+            "name": "Delete Employee",
+            "url": "http://localhost:3000/api/v1/ems/employees/1",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2025-05-28T07:37:37.653Z",
+            "modified": "2025-05-28T07:37:37.653Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        }
+    ],
+    "ref": "K_hpLw5OZZ75kE59MWwka6gGjXmv9b7ZqPSQHMspHTcfGhBCUfiONA0HlC1pMcjkkE3eCU0BuiOU1YiQharHag"
+}
