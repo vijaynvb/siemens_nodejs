@@ -99,7 +99,7 @@ Web solutions?  Tomcat
     c [another program]/ s [web server]
     1. web sites [static web pages (html, css, js, png, application/filetype)] - Apache static file server
         (get) the web pages from server -> 
-    2. web applications [ASP.Net MVC, Servlets, PHP ]  Apache Tomcat means application server
+    2. web applications [ASP.Net MVC, Servlets, PHP, nodejs express ]  Apache Tomcat means application server
         dynamic web pages, we can store data in server too (get, post) -> html
     3. web services.
         1. Soap service 

@@ -1,16 +1,9 @@
-const express = require("express");
+import express from "express"; // Importing the express module
+import router from "./routes.js"; // Import the router from routes.js
 const app = express(); // application object
 
 // Define a route
-app.get("/", (req, res) => {
-  res.send("Hello, Express!");
-});
-app.get("/about", (req, res) => {
-  res.send("About Page");
-});
-app.get("/contact", (req, res) => {
-  res.send("Contact Page");
-});
+app.use(router); // Use the imported router for handling routes
 
 // Start the server
 //const PORT = process.env.PORT || 3000;
