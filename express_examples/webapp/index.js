@@ -1,5 +1,6 @@
 import express from "express"; // Importing the express module
 import EmpRouter from "./Employee_Routes.js"; // Import the router from routes.js
+import depRouter from "./Department_Router.js";
 import config from "./envconfig.js";
 import dotenv from "dotenv"; // Import dotenv for environment variables
 import swaggerUi from 'swagger-ui-express';
@@ -16,6 +17,7 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 // Define a route
 app.use(EmpRouter); // Use the imported router for handling routes
+app.use(depRouter);
 
 // Start the server
 const PORT = process.env.PORT ;
