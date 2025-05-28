@@ -1,0 +1,22 @@
+{
+  "name": "webapp",
+  "version": "1.0.0", 
+  "description": "Simple web app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "npm run nodemon",
+    "fakeserver": "echo \"This is a fake script\"",
+    "build": "echo \"Building the web app...\"",
+    "nodemon": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "author": "vijay",
+  "license": "MIT",
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}

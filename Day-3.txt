@@ -1,0 +1,13 @@
+versions: 
+    1.0.0
+    x.y.z
+    major.minor.patch
+    patch -> bug 
+    minor -> there is no breaking changes and ur releasing the features -> function parameters 
+    major -> if you have breaking changes 
+
+Framework -> you need to follow set of rules to build a application 
+    Angular, Nextjs
+
+Library -> as a dev you have the control to implement anything the application 
+    React JS
