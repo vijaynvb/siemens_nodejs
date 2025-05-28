@@ -7,12 +7,9 @@
   "scripts": {
     "start": "node index.js",
     "start:prod": "cross-env NODE_ENV=prod node index.js",
-    "start:dev": "cross-env NODE_ENV=dev node index.js",
-    "dev": "npm run nodemon",
-    "fakeserver": "echo \"This is a fake script\"",
-    "build": "echo \"Building the web app...\"",
+    "start:dev": "npm run swagger && cross-env NODE_ENV=dev node index.js",
     "nodemon": "cross-env NODE_ENV=dev nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "swagger": "cross-env node ./swagger.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
@@ -22,6 +19,8 @@
   "dependencies": {
     "cross-env": "7.0.3",
     "dotenv": "16.5.0",
-    "express": "5.1.0"
+    "express": "5.1.0",
+    "swagger-autogen": "2.23.7",
+    "swagger-ui-express": "5.0.1"
   }
 }

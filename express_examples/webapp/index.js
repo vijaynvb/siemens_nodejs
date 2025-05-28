@@ -2,10 +2,18 @@ import express from "express"; // Importing the express module
 import EmpRouter from "./Employee_Routes.js"; // Import the router from routes.js
 import config from "./envconfig.js";
 import dotenv from "dotenv"; // Import dotenv for environment variables
+import swaggerUi from 'swagger-ui-express';
+import { readFile } from "fs/promises"; // Import readFile for reading files asynchronously
 dotenv.config(config); // Load environment variables from .env file
 const app = express(); // application object
 
+const swaggerDoc = JSON.parse(
+  await readFile(new URL('./swagger-output.json', import.meta.url))
+);
+
 app.use(express.json()); // Middleware to parse JSON request bodies
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 // Define a route
 app.use(EmpRouter); // Use the imported router for handling routes
 
