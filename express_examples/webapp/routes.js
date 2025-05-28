@@ -13,7 +13,8 @@ router.get("/api/v1/ems/employees/:id", (req, res) => {
   const employee = employees.find(emp => emp.id === employeeId);
   
   if (employee) {
-    res.json(employee);
+    res.header("Content-Type", "application/json").status(200).json(employee);
+    // headers connect-type: application/json, stringification of the object status code 200
   } else {
     res.status(404).json({ message: "Employee not found" });
   }
