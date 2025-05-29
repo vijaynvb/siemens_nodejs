@@ -17,6 +17,7 @@ async function enrichWithDepartment(empDoc) {
 
 // GET all employees
 EmpRouter.get("/api/v1/ems/employees", async (req, res) => {
+  // #swagger.security = [{ bearerAuth: [] }] // Security definition for Swagger
   const employees = await Employee.find();
   const enriched = await Promise.all(employees.map(enrichWithDepartment));
   res.status(200).json(enriched);
@@ -24,6 +25,8 @@ EmpRouter.get("/api/v1/ems/employees", async (req, res) => {
 
 // GET employee by ID
 EmpRouter.get("/api/v1/ems/employees/:id", async (req, res) => {
+    // #swagger.security = [{ bearerAuth: [] }] // Security definition for Swagger
+
   const emp = await Employee.findOne({ id: parseInt(req.params.id, 10) });
   if (!emp) return res.status(404).json({ message: "Employee not found" });
   res.json(await enrichWithDepartment(emp));
@@ -31,6 +34,8 @@ EmpRouter.get("/api/v1/ems/employees/:id", async (req, res) => {
 
 // POST new employee
 EmpRouter.post("/api/v1/ems/employees", async (req, res) => {
+    // #swagger.security = [{ bearerAuth: [] }] // Security definition for Swagger
+
   const { id, first_name, depId } = req.body;
   if (!id || !first_name || !depId) {
     return res.status(400).json({ message: "Invalid employee data" });
@@ -43,6 +48,8 @@ EmpRouter.post("/api/v1/ems/employees", async (req, res) => {
 
 // PUT update employee
 EmpRouter.put("/api/v1/ems/employees/:id", async (req, res) => {
+    // #swagger.security = [{ bearerAuth: [] }] // Security definition for Swagger
+
   const emp = await Employee.findOneAndUpdate(
     { id: parseInt(req.params.id, 10) },
     req.body,
@@ -54,6 +61,7 @@ EmpRouter.put("/api/v1/ems/employees/:id", async (req, res) => {
 
 // DELETE employee
 EmpRouter.delete("/api/v1/ems/employees/:id", async (req, res) => {
+  
   const emp = await Employee.findOneAndDelete({ id: parseInt(req.params.id, 10) });
   if (!emp) return res.status(404).json({ message: "Employee not found" });
   res.status(202).json(await enrichWithDepartment(emp));

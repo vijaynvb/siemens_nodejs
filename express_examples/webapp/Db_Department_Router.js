@@ -2,6 +2,8 @@ import express from "express"; // Importing the express module
 import { Department } from "./data/db.js";
 const depRouter = express.Router();
 
+
+
 depRouter.get("/api/v1/ems/departments", async (req, res) => {
   try {
     const dept = await Department.find();
