@@ -69,15 +69,20 @@ Docker Commands:
 
 $ docker images 
 // make sure dockerfile is in the application folder and comamnds getting executed from the same folder.
-$ docker build --tag vijaynvb/emsnodejsapp:latest .
+$ docker build --tag <dockerhubuserid>/emsnodejsapp:latest .
 $ docker network ls
 $ docker network create emsapp
 $ docker network ls
 $ docker ps -a
 $ docker run -d --name mongodb --network emsapp -p 27017:27017 mongo:latest
-$ docker run -d --name emsapp --network emsapp -p 2000:2000 vijaynvb/emsnodejsapp:latest
+$ docker run -d --name emsapp --network emsapp -p 2000:2000 <dockerhubuserid>/emsnodejsapp:latest
 $ docker ps -a
 $ docker rm -f <ContainerID>
 $ docker stop <ContainerID> 
 $ docker start <ContainerID> 
+$ docker login 
+    dockerhub username
+    dockerhub password
+$ docker push <dockerhubuserid>/emsnodejsapp:latest
+$ docker pull vijaynvb/emsnodejsapp:latest
 
