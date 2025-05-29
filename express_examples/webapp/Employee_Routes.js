@@ -1,78 +1,103 @@
 import express from "express"; // Importing the express module
-import { employees } from "./data/employees.js"; // Importing the employees data
-import { departments } from "./data/departments.js";
+import { Employee, Department } from "./db.js";
+import { authenticateJWT,authorizeAdmin } from "./authMiddleware.js";
 
 const EmpRouter = express.Router();
+EmpRouter.use(authenticateJWT);
 
-// Helper to enrich employee with department name
-// Helper: remove depId and add full department object
-function enrichWithDepartment(emp) {
-  const department = departments.find(dep => dep.depId === emp.depId);
-  const { depId, ...employeeWithoutDepId } = emp;
-
-  return {
-    ...employeeWithoutDepId,
-    department: department || { depId, depName: "Unknown" }
-  };
+// Helper: MongoDB aggregation with $lookup
+async function getEmployeesWithDepartments(filter = {}) {
+  return Employee.aggregate([
+    { $match: filter },
+    {
+      $lookup: {
+        from: "departments",
+        localField: "depId",
+        foreignField: "depId",
+        as: "department"
+      }
+    },
+    {
+      $unwind: {
+        path: "$department",
+        preserveNullAndEmptyArrays: true
+      }
+    },
+    {
+      $project: {
+        depId: 0 // optional: hide depId
+      }
+    }
+  ]);
 }
 
-EmpRouter.get("/api/v1/ems/employees", (req, res) => {
-  const enrichedEmployees = employees.map(enrichWithDepartment);
-  res.json(enrichedEmployees);
+// GET all employees
+EmpRouter.get("/api/v1/ems/employees", async (req, res) => {
+  // Employee.find
+  // #swagger.tags = ['Employees']
+  // #swagger.security = [{"bearerAuth": [] }]
+  const employees = await getEmployeesWithDepartments();
+  res.json(employees);
 });
+
 // model binding when a request is reaching to the endpoint 
 // url, body, headers, version, method
-EmpRouter.get("/api/v1/ems/employees/:id", (req, res) => {
-    //console.log(req);
-  const employeeId = parseInt(req.params.id, 10);
-  const employee = employees.find(emp => emp.id === employeeId);
-  
-  if (employee) {
-    res.header("Content-Type", "application/json").status(200).json(enrichWithDepartment(employee));
-    // headers connect-type: application/json, stringification of the object status code 200
-  } else {
-    res.status(404).json({ message: "Employee not found" });
-  }
+// GET employee by ID
+EmpRouter.get("/api/v1/ems/employees/:id", async (req, res) => {
+  // #swagger.tags = ['Employees']
+  // #swagger.security = [{"bearerAuth": [] }]
+  const id = parseInt(req.params.id, 10);
+  const [employee] = await getEmployeesWithDepartments({ id });
+
+  if (!employee) return res.status(404).json({ message: "Employee not found" });
+  res.json(employee);
+
 });
 
-EmpRouter.post("/api/v1/ems/employees", (req, res) => {
-  const newEmployee = req.body; 
-  //console.log(req.body);
-  if (!newEmployee || !newEmployee.first_name || !newEmployee.id) {
+// POST new employee
+EmpRouter.post("/api/v1/ems/employees", async (req, res) => {
+  // #swagger.tags = ['Employees']
+  // #swagger.security = [{"bearerAuth": [] }]
+  const { id, first_name, depId } = req.body;
+  if (!id || !first_name || !depId) {
     return res.status(400).json({ message: "Invalid employee data" });
   }
-  
-  employees.push(newEmployee); // Add the new employee to the employees array
-  res.status(201).json(enrichWithDepartment(newEmployee)); // Respond with the created employee
+
+  const emp = new Employee(req.body);
+  await emp.save();
+
+  const [created] = await getEmployeesWithDepartments({ id });
+  res.status(201).json(created);
 });
 
-EmpRouter.put("/api/v1/ems/employees/:id", (req, res) => {
-  const employeeId = parseInt(req.params.id, 10);
-  const updatedEmployee = req.body; // Assuming the updated employee data is sent in the request body
 
-  const oldEmployeeIndex = employees.findIndex(emp => emp.id === employeeId);
+// PUT update employee
+EmpRouter.put("/api/v1/ems/employees/:id", async (req, res) => {
+  // #swagger.parameters['body'] = { in: 'body', schema: { first_name: 'New Name', last_name: 'New Last Name', email: 'newemail@example.com', depId: 1 } }
+  // Employee.findOneAndUpdate
+  // #swagger.tags = ['Employees']
+  // #swagger.security = [{"bearerAuth": [] }]
+  const id = parseInt(req.params.id, 10);
 
-  if (oldEmployeeIndex !== -1) {
-    // Respond with the updated employee
-    employees.splice(oldEmployeeIndex, 1); // Remove the old employee
-    employees.push(updatedEmployee);
-    res.status(202).json(enrichWithDepartment(updatedEmployee));
-  } else {
-    res.status(404).json({ message: "Employee not found" });
-  }
+  const emp = await Employee.findOneAndUpdate({ id }, req.body, { new: true });
+  if (!emp) return res.status(404).json({ message: "Employee not found" });
+
+  const [updated] = await getEmployeesWithDepartments({ id });
+  res.status(202).json(updated);
 });
-EmpRouter.delete("/api/v1/ems/employees/:id", (req, res) => {
-  const employeeId = parseInt(req.params.id, 10);
-  const oldEmployee = employees.find(emp => emp.id === employeeId);
-  const oldEmployeeIndex = employees.findIndex(emp => emp.id === employeeId);
 
-  if (oldEmployeeIndex !== -1) {
-    // Respond with the updated employee
-    employees.splice(oldEmployeeIndex, 1); // Remove the old employee
-    res.status(202).send(enrichWithDepartment(oldEmployee)); // Respond with no content
-  } else {
-    res.status(404).json({ message: "Employee not found" });
-  }
+// DELETE employee
+EmpRouter.delete("/api/v1/ems/employees/:id", authorizeAdmin, async (req, res) => {
+  // Employee.findOneAndDelete
+  // #swagger.tags = ['Employees']
+  // #swagger.security = [{"bearerAuth": [] }]
+  const id = parseInt(req.params.id, 10);
+
+  const emp = await Employee.findOneAndDelete({ id });
+  if (!emp) return res.status(404).json({ message: "Employee not found" });
+
+  const [deleted] = await getEmployeesWithDepartments({ id });
+  res.status(202).json(deleted);
 });
 
 export default EmpRouter;

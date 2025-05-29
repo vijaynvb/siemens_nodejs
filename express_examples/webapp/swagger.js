@@ -1,11 +1,24 @@
 import swaggerAutogen from 'swagger-autogen';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const doc = {
   info: {
-    title: 'REST API',
-    description: 'Description'
+    title: 'Employee Management System API',
+    version: '1.0.0',
+    description: 'API documentation for the Employee Management System'
   },
-  host: 'localhost:3000',
+  host: `localhost:${process.env.PORT}`, // Replace with your host and port
+  basePath: '/',
+  schemes: ['http'], // or ['https'] if using HTTPS
+  securityDefinitions: {
+    bearerAuth: {
+      type: 'apiKey',
+      name: 'Authorization',
+      in: 'header',
+      description: 'Enter your bearer token in the format **Bearer &lt;token&gt;**',
+    },
+  }
 };
 
 const outputFile = './swagger-output.json';
