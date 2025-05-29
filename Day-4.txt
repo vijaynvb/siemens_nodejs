@@ -1,0 +1,34 @@
+Mongodb: 
+    Documents - JSON -> BSON - Binary Script Object Notation
+
+    Collections -> Table
+        1. group of documents -> dont have schema 
+
+1. Docker -> Server program -> 
+2. Compas -> client 
+3. queries -> API's -> Methods 
+
+CRUD -> 
+    1. R -> find(), findOne(), FindMany()
+    2. C -> InsertOne(data), InsertMany([data])
+    3. U -> UpdateOne(data)
+    4. D -> DeleteOne(filters), DeleteMany(filters)
+
+    Keyword: $exsts,$lt, $gt, $project, $unwind, $group 
+
+db.todos.find({ tags: { $eq: ["work", "project"] } })
+
+db.products.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      TotalPrice: { $sum: "$price" }
+    }
+  }
+])
+
+db.todos.aggregate([
+  {
+    $unwind: "$tags"
+  }
+])

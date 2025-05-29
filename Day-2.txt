@@ -104,6 +104,17 @@ R getallemployees  get      http://ip:port/api/v1/ems/employees                 
   getempbyid       get      http://ip:port/api/v2/ems/employees/[1]                     404
   getempdept       get      http://ip:port/api/v1/ems/employees/[1]/department
 C                  post     http://ip:port/api/v1/ems/employees + data json body        201 created
-U                  put      http://ip:port/api/v1/ems/employees/[1]  + data json body   203 Accepted
-D                  delete   http://ip:port/api/v1/ems/employees/[1]                     203 Accepted
+U                  put      http://ip:port/api/v1/ems/employees/[1]  + data json body   202 Accepted
+D                  delete   http://ip:port/api/v1/ems/employees/[1]                     202 Accepted
+
+R getalldepartments  get      http://ip:port/api/v1/ems/departments                         200 ok
+                 request    headers Accept: application/json/xml 
+                 responding headers Content-type: application/json
+  pagination       get      http://ip:port/api/v1/ems/departments?page=2&limit=10
+  search           get      http://ip:port/api/v1/ems/departments?search=name:vijay       204
+  getdeptbyid      get      http://ip:port/api/v2/ems/departments/[1]                     404
+  getdeptdept      get      http://ip:port/api/v1/ems/departments/[1]/department
+C                  post     http://ip:port/api/v1/ems/departments + data json body        201 created
+U                  put      http://ip:port/api/v1/ems/departments/[1]  + data json body   202 Accepted
+D                  delete   http://ip:port/api/v1/ems/departments/[1]                     202 Accepted
 

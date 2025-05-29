@@ -1,6 +1,6 @@
 import express from "express"; // Importing the express module
-import EmpRouter from "./Employee_Routes.js"; // Import the router from routes.js
-import depRouter from "./Department_Router.js";
+import EmpRouter from "./Db_Employee_Router.js"; // Import the router from routes.js
+import depRouter from "./Db_Department_Router.js";
 import config from "./envconfig.js";
 import dotenv from "dotenv"; // Import dotenv for environment variables
 import swaggerUi from 'swagger-ui-express';

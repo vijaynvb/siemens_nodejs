@@ -11,3 +11,35 @@ Framework -> you need to follow set of rules to build a application
 
 Library -> as a dev you have the control to implement anything the application 
     React JS
+
+
+
+Databases: 
+    1. RDBMS 
+        C[Client Progrma, Application]/S[RDBMS Server Program] 
+        SQL -> 
+        Relationship of data -> schema
+        ACID -> transactional managemnt 
+        multiple relication servers running in parallel - not high availability 
+            X db_1 active- hot -> replication 
+            db_2 pasive - cold
+    2. NoSQL 
+        C[Client Progrma, Application]/S[NoSQL Server Program] 
+        API's 
+        not a manadatory schema 
+        many instance of db active at any given point -> high availability 
+
+            types: 
+                1. key value pair -> github configs 
+                2. columun -> casandra 
+                    manage contact list in a phone
+                3. document 
+                    json, entity details as one document -> mongodb, couchdb, firebase
+                4. graph 
+                    limited releation ship -> neo4j -> 
+
+
+Mongodb: Banks -> credit and debit 
+    horizontal scaling -> regions -> replication -> no consistency -> eventual consistency  
+        facebook -> india -> wall post -> db_india -> replication -> 5 second -> leader and follower
+        facebook -> us    -> wall post -> db_US
