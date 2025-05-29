@@ -32,3 +32,52 @@ db.todos.aggregate([
     $unwind: "$tags"
   }
 ])
+
+
+
+PM2 - process manager : LB 
+  1. node express application -> 
+      process
+      1
+      2
+      3
+      4
+
+Dockers:
+  1. docker instance create for other orcastrations tools they will mange the instance at VM levels, container level 
+    container: LB external lb f5, or K8s 
+    1
+    2
+    3
+    4
+
+Process manager Commands: 
+
+$ npm install pm2 -g
+$ pm2 -v
+// application folder
+$ pm2 start index.js
+$ pm2 stop index
+$ pm2 list
+$ pm2 logs index
+$ pm2 restart index
+$ pm2 monit
+$ pm2 delete index
+$ pm2 start index.js -i 4
+
+Docker Commands: 
+
+$ docker images 
+// make sure dockerfile is in the application folder and comamnds getting executed from the same folder.
+$ docker build --tag vijaynvb/emsnodejsapp:latest .
+$ docker network ls
+$ docker network create emsapp
+$ docker network ls
+$ docker ps -a
+$ docker run -d --name mongodb --network emsapp -p 27017:27017 mongo:latest
+$ docker run -d --name emsapp --network emsapp -p 2000:2000 vijaynvb/emsnodejsapp:latest
+$ docker ps -a
+$ docker rm -f <ContainerID>
+$ docker stop <ContainerID> 
+$ docker start <ContainerID> 
+

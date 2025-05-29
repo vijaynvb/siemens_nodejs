@@ -1,5 +1,6 @@
 # Use an official Node.js runtime as the base image
-FROM node:18
+# ubuntu 20.04 os, node 18, npm 8
+FROM node:latest
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -14,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Expose the port your Node.js app listens on
-EXPOSE 8080
+EXPOSE 2000
 
 # Command to run your Node.js application
 CMD ["node", "index.js"]

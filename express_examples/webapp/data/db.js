@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
 // MongoDB connection URI
-const MONGODB_URI = "mongodb://localhost:27017/ems";
+const MONGODB_URI = "mongodb://mongodb:27017/ems";
 
 mongoose.connect(MONGODB_URI);
 mongoose.connection.on("connected", () => {
